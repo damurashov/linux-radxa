@@ -2276,7 +2276,7 @@
 		fifo-depth = <0x100>;
 		resets = <&cru SRST_SDMMC2>;
 		reset-names = "reset";
-		status = "okay";
+		status = "disabled";
 	};
 
 	dfi: dfi@fe230000 {
@@ -2605,7 +2605,7 @@
 		fifo-depth = <0x100>;
 		resets = <&cru SRST_SDMMC0>;
 		reset-names = "reset";
-		status = "okay";
+		status = "disabled";
 	};
 
 	sdmmc1: dwmmc@fe2c0000 {
@@ -2620,7 +2620,7 @@
 		fifo-depth = <0x100>;
 		resets = <&cru SRST_SDMMC1>;
 		reset-names = "reset";
-		status = "okay";
+		status = "disabled";
 	};
 
 	sfc: spi@fe300000 {

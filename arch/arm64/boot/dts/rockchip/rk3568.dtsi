@@ -2637,6 +2637,17 @@
 	};
 
 	sdhci: sdhci@fe310000 {
+		pinctrl-names = "default";
+		pinctrl-0 = <0x5e 0x5f 0x60 0x61>;
+		vqmmc-supply = <0x1a>;
+		mmc-hs200-1_8v;
+		bus-width = <0x08>;
+		non-removable;
+		vmmc-supply = <0x1c>;
+		bootph-pre-ram;
+		phandle = <0xf3>;
+		max-frequency = <0xbebc200>;
+
 		compatible = "rockchip,rk3568-dwcmshc", "rockchip,dwcmshc-sdhci";
 		reg = <0x0 0xfe310000 0x0 0x10000>;
 		interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
@@ -2651,7 +2662,7 @@
 			 <&cru SRST_A_EMMC>, <&cru SRST_B_EMMC>,
 			 <&cru SRST_T_EMMC>;
 		reset-names = "core", "bus", "axi", "block", "timer";
-		status = "disabled";
+		status = "okay";
 	};
 
 	nandc0: nandc@fe330000 {

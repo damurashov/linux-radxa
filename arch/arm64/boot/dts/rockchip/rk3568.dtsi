@@ -2594,18 +2594,28 @@
 	};
 
 	sdmmc0: dwmmc@fe2b0000 {
-		compatible = "rockchip,rk3568-dw-mshc",
-			     "rockchip,rk3288-dw-mshc";
-		reg = <0x0 0xfe2b0000 0x0 0x4000>;
-		interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-		max-frequency = <150000000>;
-		clocks = <&cru HCLK_SDMMC0>, <&cru CLK_SDMMC0>,
-			 <&cru SCLK_SDMMC0_DRV>, <&cru SCLK_SDMMC0_SAMPLE>;
-		clock-names = "biu", "ciu", "ciu-drive", "ciu-sample";
 		fifo-depth = <0x100>;
-		resets = <&cru SRST_SDMMC0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <0x55 0x56 0x57>;
+		clock-names = "biu\0ciu\0ciu-drive\0ciu-sample";
+		cap-sd-highspeed;
+		vqmmc-supply = <0x1b>;
+		bus-width = <0x04>;
+		resets = <0x0e 0xd4>;
+		interrupts = <0x00 0x62 0x04>;
+		clocks = <0x0e 0xb0 0x0e 0xb1 0x0e 0x18a 0x0e 0x18b>;
+		broken-cd;
+		vmmc-supply = <0x1c>;
+		compatible = "rockchip,rk3568-dw-mshc\0rockchip,rk3288-dw-mshc";
+		status = "okay";
+		disable-wp;
+		reg = <0x00 0xfe2b0000 0x00 0x4000>;
+		bootph-pre-ram;
+		phandle = <0xef>;
+		sd-uhs-sdr104;
+		max-frequency = <0x8f0d180>;
+		cap-mmc-highspeed;
 		reset-names = "reset";
-		status = "disabled";
 	};
 
 	sdmmc1: dwmmc@fe2c0000 {
@@ -2639,30 +2649,22 @@
 	sdhci: sdhci@fe310000 {
 		pinctrl-names = "default";
 		pinctrl-0 = <0x5e 0x5f 0x60 0x61>;
+		clock-names = "core\0bus\0axi\0block\0timer";
 		vqmmc-supply = <0x1a>;
+		assigned-clocks = <0x0e 0x7b 0x0e 0x7d>;
 		mmc-hs200-1_8v;
 		bus-width = <0x08>;
 		non-removable;
+		assigned-clock-rates = <0xbebc200 0x16e3600>;
+		interrupts = <0x00 0x13 0x04>;
+		clocks = <0x0e 0x7c 0x0e 0x7a 0x0e 0x79 0x0e 0x7b 0x0e 0x7d>;
 		vmmc-supply = <0x1c>;
+		compatible = "rockchip,rk3568-dwcmshc";
+		status = "okay";
+		reg = <0x00 0xfe310000 0x00 0x10000>;
 		bootph-pre-ram;
 		phandle = <0xf3>;
 		max-frequency = <0xbebc200>;
-
-		compatible = "rockchip,rk3568-dwcmshc", "rockchip,dwcmshc-sdhci";
-		reg = <0x0 0xfe310000 0x0 0x10000>;
-		interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-		assigned-clocks = <&cru BCLK_EMMC>, <&cru TCLK_EMMC>,
-				  <&cru CCLK_EMMC>;
-		assigned-clock-rates = <200000000>, <24000000>, <200000000>;
-		clocks = <&cru CCLK_EMMC>, <&cru HCLK_EMMC>,
-			 <&cru ACLK_EMMC>, <&cru BCLK_EMMC>,
-			 <&cru TCLK_EMMC>;
-		clock-names = "core", "bus", "axi", "block", "timer";
-		resets = <&cru SRST_C_EMMC>, <&cru SRST_H_EMMC>,
-			 <&cru SRST_A_EMMC>, <&cru SRST_B_EMMC>,
-			 <&cru SRST_T_EMMC>;
-		reset-names = "core", "bus", "axi", "block", "timer";
-		status = "okay";
 	};
 
 	nandc0: nandc@fe330000 {
